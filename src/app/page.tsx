@@ -64,6 +64,7 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-2 tracking-tight">GitHub Analyzer</h1>
         <p className="text-zinc-500 mb-8 text-sm">Enter a username. Get roasted. Actually learn something.</p>
+        <p className="text-zinc-700 text-[10px] mb-4">deploy: v1.0 — CI/CD test</p>
 
         <form onSubmit={handleSearch} className="flex gap-2 mb-8">
           <input
@@ -157,6 +158,9 @@ export default function Home() {
             </div>
           </div>
         )}
+        <footer className="mt-12 text-center text-zinc-700 text-[11px]">
+          deploy: v1.1 · {new Date().toISOString().slice(0,16).replace('T',' ')} UTC
+        </footer>
       </div>
     </main>
   );
