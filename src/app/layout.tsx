@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GitHub Profile Analyzer — Rate Your Dev Portfolio",
-  description: "Free GitHub profile analyzer with AI-powered scoring, repo insights, and brutal honesty. Analyze any developer's GitHub in seconds.",
+  title: "GitHub Repo Analyzer — Security & Health Score for Any Project",
+  description: "Free GitHub repo analyzer. Check any open-source project's security, dependency health, maintenance activity, and bus factor in seconds.",
 };
 
 export default function RootLayout({
