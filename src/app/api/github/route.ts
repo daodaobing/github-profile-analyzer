@@ -3,11 +3,21 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const input = searchParams.get("repo") || "";
-  const parts = input.split("/").filter(Boolean);
-  if (parts.length < 2) {
-    return NextResponse.json({ error: "Format: owner/repo" }, { status: 400 });
+
+  // Parse: support "owner/repo", "github.com/owner/repo", "https://github.com/owner/repo"
+  let owner: string, repo: string;
+  const urlMatch = input.match(/github\.com\/([^/]+)\/([^/\s?#]+)/);
+  if (urlMatch) {
+    owner = urlMatch[1];
+    repo = urlMatch[2];
+  } else {
+    const parts = input.replace(/^https?:\/\//, "").split("/").filter(Boolean);
+    if (parts.length < 2) {
+      return NextResponse.json({ error: "Format: owner/repo" }, { status: 400 });
+    }
+    owner = parts[parts.length - 2];
+    repo = parts[parts.length - 1];
   }
-  const [owner, repo] = parts;
 
   try {
     const headers: Record<string, string> = { Accept: "application/vnd.github.v3+json" };
